@@ -1,8 +1,9 @@
 import "./App.css";
-import SelectComponent from "./components/SelectComponent";
+// import ChakraSelect from "./components/ChakraSelect";
+import ReactSelect from "./components/ReactSelect";
 
 function App() {
-  return <SelectComponent />;
+  return <ReactSelect />;
 }
 
 export default App;

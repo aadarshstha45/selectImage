@@ -9,7 +9,7 @@ import {
 import { OptionProps, Select, chakraComponents } from "chakra-react-select";
 import { socialPages } from "../data";
 
-export default function SelectComponent() {
+export default function ChakraSelect() {
   type SocialOption = {
     label: string;
     value: string;
@@ -19,7 +19,6 @@ export default function SelectComponent() {
     Option: ({ children, ...props }: OptionProps<SocialOption>) => (
       <chakraComponents.Option {...props}>
         <Image src={props.data.image} boxSize="24px" mr="2" />
-
         {children}
       </chakraComponents.Option>
     ),
