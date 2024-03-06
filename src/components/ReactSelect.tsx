@@ -1,13 +1,18 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Select, { components } from "react-select";
+import Select, {
+  GroupBase,
+  MultiValueGenericProps,
+  components,
+} from "react-select";
 
-import { Button, Container, Flex, Image } from "@chakra-ui/react";
+import { Button, Container, Flex, Image, Text } from "@chakra-ui/react";
 import { Controller, useForm } from "react-hook-form";
 import { socialPages } from "../data";
 export default function ReactSelect() {
   interface SocialInterface {
     value: string;
     label: string;
+    image: string;
   }
 
   const options: SocialInterface[] = socialPages.map((page) => ({
@@ -30,7 +35,7 @@ export default function ReactSelect() {
     reset();
   };
 
-  const CustomOptions = (props: any) => {
+  const CustomOption = (props: any) => {
     return (
       <components.Option {...props}>
         <Flex align={"center"} gap={2}>
@@ -46,12 +51,25 @@ export default function ReactSelect() {
     );
   };
 
-  const CustomValue = ({ data }: any) => (
-    <Flex align="center" gap={2}>
-      <Image src={data.image} alt={data.label} boxSize="24px" mr={2} />
-      {data.label}
-    </Flex>
-  );
+  const MultiValueLabel = (
+    props: MultiValueGenericProps<
+      SocialInterface,
+      true,
+      GroupBase<SocialInterface>
+    >
+  ) => {
+    return (
+      <Flex align={"center"} gap={1}>
+        <Image
+          p={1}
+          src={props.data.image}
+          alt={props.data.label}
+          boxSize={"35px"}
+        />
+        <Text>{props.data.label}</Text>
+      </Flex>
+    );
+  };
 
   return (
     <Container maxW={"container.lg"}>
@@ -63,7 +81,7 @@ export default function ReactSelect() {
             <Select
               options={options}
               isMulti
-              value={value.map((val) => options.find((p) => p.label === val))}
+              value={value.map((val) => options.find((p) => p.label === val)!)} // Ensure to handle the case where an option might not be found
               onChange={(selectedOption) =>
                 onChange(
                   (selectedOption as SocialInterface[]).map(
@@ -71,7 +89,10 @@ export default function ReactSelect() {
                   )
                 )
               }
-              components={{ Option: CustomOptions, SingleValue: CustomValue }}
+              components={{
+                Option: CustomOption,
+                MultiValueLabel,
+              }}
             />
           )}
         />
