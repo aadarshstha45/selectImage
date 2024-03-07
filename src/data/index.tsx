@@ -17,4 +17,29 @@ export const socialPages = [
     label: "LinkedIn",
     image: LinkedIn,
   },
+  {
+    value: "linkedin",
+    label: "LinkedIn",
+    image: LinkedIn,
+  },
+  {
+    value: "linkedin",
+    label: "LinkedIn",
+    image: LinkedIn,
+  },
+  {
+    value: "linkedin",
+    label: "LinkedIn",
+    image: LinkedIn,
+  },
+  {
+    value: "linkedin",
+    label: "LinkedIn",
+    image: LinkedIn,
+  },
+  {
+    value: "linkedin",
+    label: "LinkedIn",
+    image: LinkedIn,
+  },
 ];
